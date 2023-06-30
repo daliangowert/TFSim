@@ -1,2 +1,4 @@
 tfsim
 in/benchmarks/**/metrics.txt
+/nana
+/systemc-2.3.3

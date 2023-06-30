@@ -1,0 +1,12 @@
+DADDI R1,R0,7  // N = 7
+DADDI R2,R0,1 // saida = 1
+DADDI R3,R0,1 // i = 1
+SLT R4,R3,R1 // i < N
+BEQ R10,R0,14 // se i >= N, vai para o fim
+MUL R2,R2,R3 // saida = saida * i
+DADDI R3,R3,1 // i = i + 1
+JAL R10,4 // vai para o inicio
+DADD R11,R0,R2 // R11 = saida
+
+
+
