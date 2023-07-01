@@ -2,6 +2,7 @@
 #include "interfaces.hpp"
 #include "branch_predictor.hpp"
 #include "bpb.hpp"
+#include "correlation_predictor.hpp"
 #include <nana/gui/widgets/listbox.hpp>
 #include<vector>
 #include<deque>
@@ -28,7 +29,7 @@ public:
     sc_port<write_if_f> out_resv_adu;
     sc_port<read_if_f> in_resv_adu;
     SC_HAS_PROCESS(reorder_buffer);
-    reorder_buffer(sc_module_name name,unsigned int sz,unsigned int pred_size, unsigned int buffer_size, int flag_mode, nana::listbox &gui, nana::listbox::cat_proxy instr_gui);
+    reorder_buffer(sc_module_name name,unsigned int sz,unsigned int pred_size, int cp_size, unsigned int buffer_size, int flag_mode, nana::listbox &gui, nana::listbox::cat_proxy instr_gui);
     ~reorder_buffer();
     void leitura_issue();
     void new_rob_head();
@@ -40,6 +41,7 @@ public:
     bool rob_is_empty();
     branch_predictor get_preditor();
     bpb get_bpb();
+    correlation_predictor get_cp();
     int get_mem_count();
 
 private:
@@ -80,6 +82,7 @@ private:
     int flag_mode;
     branch_predictor preditor;
     bpb branch_prediction_buffer;
+    correlation_predictor cp;
     map<string,unsigned int> branch_instr;
     nana::listbox &gui_table;
     nana::listbox::cat_proxy instr_queue_gui;
