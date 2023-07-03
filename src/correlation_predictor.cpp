@@ -15,13 +15,11 @@ correlation_predictor::correlation_predictor(unsigned int t, unsigned int z, uns
     {
         linha.resize(size_col);
     }
-    cout << "Chamou correlation predictor" << size_col << endl;
 }
 
 bool correlation_predictor::cp_predict(unsigned int pc)
 {
     c_predictions++;
-    cout << "\n\n<<<<<<< PREDIÇÃO (buffer): " << bp_buffer[pc % size_lin][historic] << endl;
     return (bp_buffer[pc % size_lin][historic] & msb);
 }
 
@@ -46,8 +44,6 @@ void correlation_predictor::cp_update_state(unsigned int pc, bool taken, bool hi
     // Atualiza historic
     historic = (historic << 1) | taken;
     historic &= mask;
-
-    cout << "UPDATE STATE - Taken: " << taken << " Historic: " << historic << endl;
 }
 
 float correlation_predictor::cp_get_hit_rate()
